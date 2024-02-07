@@ -15,22 +15,23 @@ export default {
 		}
 	},
 	mounted() {
-		this.doThings();
-
-		axios.get("http://127.0.0.1:8000/api/events").then(risultato => {
-			if (risultato.status === 200 && risultato.data.success) {
-				console.log(risultato.data.payload);
-			}
-			else {
-				console.error('Qualcosa è andato storto');
-			}
-		}).catch(errore => {
-			console.error(errore);
-		});
+		this.getEventList();
 	},
 	methods: {
-		doThings() {
-			console.log("App.vue does things");
+		getEventList() {
+			let url = this.store.apiUrl + this.store.apiEventEndpoint
+
+			axios.get(url).then(risultato => {
+				if (risultato.status === 200 && risultato.data.success) {
+					console.log(risultato.data.payload);
+					this.store.eventList = risultato.data.payload
+				}
+				else {
+					console.error('Qualcosa è andato storto');
+				}
+			}).catch(errore => {
+				console.error(errore);
+			});
 		}
 	}
 }
