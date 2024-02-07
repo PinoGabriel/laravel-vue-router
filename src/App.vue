@@ -3,6 +3,7 @@ import AppComponent from "./components/AppComponent.vue"
 
 import axios from 'axios'; //importo Axios
 import { store } from "./store.js" //state management
+import { computeStyles } from "@popperjs/core";
 
 export default {
 	components: {
@@ -16,11 +17,16 @@ export default {
 	mounted() {
 		this.doThings();
 
-		// axios.get("indirizzo").then(risultato => {
-		// 	console.log(risultato);
-		// }).catch(errore => {
-		// 	console.error(errore);
-		// });
+		axios.get("http://127.0.0.1:8000/api/events").then(risultato => {
+			if (risultato.status === 200 && risultato.data.success) {
+				console.log(risultato.data.payload);
+			}
+			else {
+				console.error('Qualcosa è andato storto');
+			}
+		}).catch(errore => {
+			console.error(errore);
+		});
 	},
 	methods: {
 		doThings() {
