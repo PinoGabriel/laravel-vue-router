@@ -8,7 +8,9 @@ export default {
 
 <template>
     <section>
-        <h1 class="mt-5 mb-3">HomePage</h1>
+        <div class="container">
+            <h1 class="mt-5 mb-3">HomePage</h1>
+        </div>
     </section>
 </template>
 

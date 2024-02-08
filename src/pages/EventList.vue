@@ -14,9 +14,8 @@ export default {
 
 <template>
     <main>
-        <h1>Tutti gli Eventi</h1>
-
         <div class="container">
+            <h1 class="my-5">Tutti gli Eventi</h1>
             <div class="row justify-content-between">
                 <div v-for="evento in store.eventList" class="card mb-3" style="width: 18rem;">
                     <div class="card-body">
