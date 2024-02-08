@@ -1,17 +1,31 @@
 <script>
-import AppComponent from "./components/AppComponent.vue"
 
 import axios from 'axios'; //importo Axios
 import { store } from "./store.js" //state management
 import { computeStyles } from "@popperjs/core";
+import { RouterView } from "vue-router";
 
 export default {
 	components: {
-		AppComponent
+		RouterView
 	},
 	data() {
 		return {
-			store
+			store,
+			menuItems: [
+				{
+					routeName: 'home',
+					label: 'HomePage'
+				},
+				{
+					routeName: 'about',
+					label: 'Chi Siamo'
+				},
+				{
+					routeName: 'event',
+					label: 'Eventi'
+				}
+			]
 		}
 	},
 	mounted() {
@@ -38,13 +52,17 @@ export default {
 </script>
 
 <template>
-	<main>
-		<AppComponent />
+	<header>
+		<li v-for="(item, index) in menuItems" :key="index">
+			<router-link :to="{ name: item.routeName }" class="nav-link">
+				{{ item.label }}
+			</router-link>
+		</li>
+	</header>
+	<router-view></router-view>
 
-		<button class="btn btn-primary">
-			<font-awesome-icon icon="fa-solid fa-home" class="me-1" />
-			<span>Primary button</span>
-		</button>
+	<main>
+
 	</main>
 </template>
 
@@ -58,7 +76,4 @@ export default {
 // @use './styles/partials/variables' as *;
 
 // ...qui eventuale SCSS di App.vue
-main {
-	padding: 1rem;
-}
 </style>
