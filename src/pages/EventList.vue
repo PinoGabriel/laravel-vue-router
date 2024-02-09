@@ -23,7 +23,11 @@ export default {
                         <h5 class="card-title">User: {{ evento.user.name }}</h5>
                         <p class="card-text">Ci sono {{ evento.available_tickets }} biglietti per il {{ evento.date }}
                         </p>
-                        <a href="#" class="btn btn-primary">Vai all'evento</a>
+                        <a href="#" class="btn btn-primary">
+                            <router-link :to="{ name: 'event_details', params: { id: evento.id } }" class="nav-link">
+                                Vai all'evento
+                            </router-link>
+                        </a>
                     </div>
                 </div>
             </div>
