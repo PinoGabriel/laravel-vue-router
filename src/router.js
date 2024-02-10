@@ -27,6 +27,7 @@ const router = createRouter({
             path: '/event/:id',
             name: 'event_details',
             component: EventDetails,
+            props: true
         },
     ]
 });
