@@ -18,6 +18,7 @@ export default {
             <h1 class="my-5">Tutti gli Eventi</h1>
             <div class="row justify-content-between">
                 <div v-for="evento in store.eventList" class="card mb-3" style="width: 18rem;">
+                    <div v-if="!evento">Caricamento in corso...</div>
                     <div class="card-body">
                         <h3 class="card-title">{{ evento.event_name }}</h3>
                         <h5 class="card-title">User: {{ evento.user.name }}</h5>

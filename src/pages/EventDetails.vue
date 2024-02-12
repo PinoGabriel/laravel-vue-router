@@ -1,5 +1,6 @@
 <script>
 import { store } from "../store.js" //state management
+import axios from 'axios'; //importo Axios
 
 export default {
     name: "EventDetails",
@@ -11,9 +12,27 @@ export default {
         }
     },
     mounted() {
-        console.log("Eventi: ", this.store.eventList[this.id - 1]);
-        this.evento = this.store.eventList.find(item => item.id == this.id)
+        /* console.log("Eventi: ", this.store.eventList[this.id - 1]);
+        this.evento = this.store.eventList.find(item => item.id == this.id) */
+        this.getEventDetail();
     },
+    methods: {
+        getEventDetail() {
+            let url = this.store.apiUrl + this.store.apiEventEndpoint + this.id
+
+            axios.get(url).then(risultato => {
+                if (risultato.status === 200 && risultato.data.success) {
+                    console.log(risultato.data.payload);
+                    this.evento = risultato.data.payload
+                }
+                else {
+                    console.error('Qualcosa è andato storto');
+                }
+            }).catch(errore => {
+                console.error(errore);
+            });
+        }
+    }
 }
 </script>
 
