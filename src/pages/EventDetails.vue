@@ -18,7 +18,7 @@ export default {
     },
     methods: {
         getEventDetail() {
-            let url = this.store.apiUrl + this.store.apiEventEndpoint + this.id
+            let url = this.store.apiUrl + this.store.apiEventEndpoint + this.id;
 
             axios.get(url).then(risultato => {
                 if (risultato.status === 200 && risultato.data.success) {
@@ -47,6 +47,7 @@ export default {
                     <p class="card-text">Ci sono <b>{{ evento?.available_tickets }}</b> biglietti per il <b>{{ evento?.date
                     }}</b>
                     </p>
+                    <p v-for="tag in evento?.tags" class="me-2 badge rounded-pill text-bg-primary">{{ tag.name }}</p>
                 </div>
             </div>
         </div>
